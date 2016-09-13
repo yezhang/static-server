@@ -8,7 +8,9 @@ app.get('/publi/:fname/:cname', function(req, res) {
     var cname = req.params.cname;
     console.log(fname);
     console.log(cname);
-    res.sendfile("./public/"+fname+"/"+cname);
+    res.sendfile("./public/" + fname + "/" + cname);
+});
+
 http.createServer(app).listen('8000', function() {
     console.log('启动服务器完成http://localhost:8000/public/');
 });
