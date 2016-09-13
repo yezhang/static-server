@@ -1,0 +1,43 @@
+{
+  "name": "mock-server",
+  "version": "1.0.0",
+  "description": "移动app的MockServer，提供Restful接口。",
+  "main": "index.js",
+  "scripts": {
+    "compile": "babel index.js -o index-compiled.js",
+    "start": "node index.js",
+    "serve": "pm2 start index.js --name \"api\"",
+    "watch": "pm2 start index.js --name \"api\" --watch",
+    "show": "pm2 show api",
+    "restart": "pm2 restart api",
+    "monit": "pm2 monit",
+    "stop": "pm2 stop api",
+    "kill": "pm2 kill"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.yonyou.com:e-invoice-FE/mock-server.git"
+  },
+  "keywords": [
+    "mock",
+    "mock-server",
+    "e-invoice"
+  ],
+  "author": "e-invoice",
+  "license": "ISC",
+  "dependencies": {
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "koa": "^1.2.1",
+    "koa-body": "^1.4.0",
+    "koa-cors": "0.0.16",
+    "koa-logger": "^1.3.0",
+    "koa-router": "^5.4.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-polyfill": "^6.13.0",
+    "babel-register": "^6.14.0",
+    "pm2": "^1.1.3"
+  }
+}
