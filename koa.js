@@ -1,35 +1,34 @@
-'use script'
 var send = require('koa-send');
 var Koa = require('koa');
 var app = new Koa();
 var Router = require('koa-router');
 var cors = require('koa-cors');
 var koaBody = require('koa-body')();
+var compress = require('koa-compress')
+var fs = require('fs');
 var router = new Router({
     prefix: '/public'
 });
+app.use(compress({
+  filter: function (jpg) {
+    return ("./public/img/out.jpg")(jpg)
+  },
+  threshold: 512,
+  flush: require('zlib').Z_SYNC_FLUSH
+}))
 app.use(cors())
     .use(router.routes())
     .use(router.allowedMethods());
-
   router.get('/:fname/:cname', koaBody, function *() {
         var fname = this.params.fname;
         var cname = this.params.cname;
         console.log(fname);
         console.log(cname);
-        // var arr= new Array;
-        // arr[0]=fname;
-        // arr[1]=cname;
-          yield send(this,"./public/"+fname+"/"+cname);
-      //  return arr;
+          this.compress = true
+          this.body = fs.createReadStream("./public/"+fname+"/"+cname);
+          console.log(this.body);
+         yield send(this,"./public/"+fname+"/"+cname);
     })
-    // var fanme = arr[0];
-    // var cname = arr[1];
-    // console.log(fname);
-    // console.log(cname);
-    // app.use(function *(){
-    //   yield send(this, "'./public/'+t.fname+'/'+t.cname");
-    // })
     var port = 8000;
     app.listen(port);
     console.log(` 启动成功,端口: ${port}`);
