@@ -19,6 +19,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "dev": "babel-node koa.js",
     "test": "mocha"
   },
   "repository": {
