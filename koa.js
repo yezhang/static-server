@@ -8,7 +8,7 @@ var gzip = require('koa-gzip')
 var router = new Router({
     prefix: '/public'
 });
-app.use(gzip());
+// app.use(gzip());
 app.use(cors())
     .use(router.routes())
     .use(router.allowedMethods());
