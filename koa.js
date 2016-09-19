@@ -4,28 +4,10 @@ var app = new Koa();
 var Router = require('koa-router');
 var cors = require('koa-cors');
 var koaBody = require('koa-body')();
-// var fs = require('fs');
 var gzip = require('koa-gzip')
-    // var zlib = require('zlib');
-    // var gunzipStream = zlib.createGunzip();
-    // var toWrite = fs.createWriteStream('new.js');
 var router = new Router({
     prefix: '/public'
 });
-// var options = {
-//     hostname: "localhost"
-//     port: "8001"
-//     headers: {
-//         'accept-Encoding': 'gzip'
-//     }
-// }
-// http.request(options, handler);
-// function handler(responder) {
-//     if (responder.headers['content-encoding'].indexOf('gzip') != -1) {
-//         // 解压gzip
-//         responder.pipe(gunzipStream).pipe(toWrite);
-//     }
-// }
 app.use(gzip());
 app.use(cors())
     .use(router.routes())
