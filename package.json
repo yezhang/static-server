@@ -1,25 +1,26 @@
 {
   "name": "static-server",
   "version": "1.0.0",
-  "description": "static server",
-  "main": "koa.js",
+  "description": "",
+  "main": "koa.jx",
   "dependencies": {
+    "babel": "^6.5.2",
     "babel-cli": "^6.14.0",
     "co": "^4.6.0",
     "co-body": "^4.2.0",
     "compression": "^1.6.2",
-    "koa": "^1.2.4",
-    "koa-compress": "^1.0.9",
-    "koa-router-static": "^1.2.0",
     "i": "^0.3.5",
+    "koa": "^1.2.4",
+    "koa-cache-control": "^1.0.0",
+    "koa-compress": "^1.0.9",
+    "koa-gzip": "^0.1.0",
+    "koa-router-static": "^1.2.0",
     "koa-static": "^2.0.0",
     "thunkify-wrap": "^0.1.1",
     "underscore": "^1.8.3",
-    "pm2": "^1.1.3"
+        "pm2": "^1.1.3"
   },
-  "devDependencies": {
-    "babel-core": "^6.14.0"
-  },
+  "devDependencies": {    "babel-core": "^6.14.0"},
   "scripts": {
     "dev": "node koa.js",
     "watch" :"pm2 start koa.js --watch",
@@ -35,6 +36,6 @@
     "static",
     "server"
   ],
-  "author": "kstd",
+  "author": "",
   "license": "ISC"
 }

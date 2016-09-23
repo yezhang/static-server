@@ -7,7 +7,6 @@ var cors = require('koa-cors');
 var koaBody = require('koa-body')();
 var gzip = require('koa-gzip');
  var cacheControl = require('koa-cache-control');
-var staticCache = require('koa-static-cache');
 var router = new Router({
     prefix: '/public'
 });
