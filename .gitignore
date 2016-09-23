@@ -1,1 +1,6 @@
 node_modules/
+dist/
+public/
+
+# 忽略项目工程文件
+.idea/
