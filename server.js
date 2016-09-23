@@ -29,7 +29,6 @@ var router = new Router();
 /**
  * 启用文件压缩
  */
-// app.use(gzip());
 app.use(compress());
 
 // app.use(logger());
@@ -74,7 +73,8 @@ app.use(staticServer(path.join(__dirname, 'dist')));
 
 onerror(app);
 
+var IP = '127.0.0.1'
 var port = 9000;
-app.listen(port);
+app.listen(port, IP);
 
 console.log(`静态服务器启动成功, 访问地址 http://localhost:${port}`);
