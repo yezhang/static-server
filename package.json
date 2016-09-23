@@ -14,15 +14,18 @@
     "url": "git@git.yonyou.com:e-invoice-FE/static-server.git"
   },
   "scripts": {
-    "dev": "node koa.js",
-    "watch": "pm2 start koa.js --watch",
+    "dev": "node server.js",
+    "start": "pm2 start server.js --name \"static-server\"",
+    "watch": "pm2 start server.js --name \"static-server\" --watch",
     "monit": "pm2 monit",
-    "stop": "pm2 stop koa.js",
+    "stop": "pm2 stop --name \"static-server\"",
+    "restart": "pm2 restart --name \"static-server\"",
     "kill": "pm2 kill"
   },
   "dependencies": {
     "babel": "^6.5.2",
     "babel-cli": "^6.14.0",
+    "bytes": "^2.4.0",
     "co": "^4.6.0",
     "co-body": "^4.2.0",
     "compression": "^1.6.2",
@@ -31,11 +34,12 @@
     "koa-cache-control": "^1.0.0",
     "koa-compress": "^1.0.9",
     "koa-gzip": "^0.1.0",
+    "koa-log4": "^2.0.1",
     "koa-router-static": "^1.2.0",
     "koa-static": "^2.0.0",
+    "pm2": "^1.1.3",
     "thunkify-wrap": "^0.1.1",
-    "underscore": "^1.8.3",
-    "pm2": "^1.1.3"
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "babel-core": "^6.14.0"
