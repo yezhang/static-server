@@ -13,7 +13,7 @@ const onerror = require('koa-onerror');
 const log4js = require('koa-log4')
 
 const staticServer = require('koa-static');
-const gzip = require('koa-gzip');
+var compress = require('koa-compress');
 const send = require('koa-send');
 const Router = require('koa-router');
 const koaBody = require('koa-body')();
@@ -29,7 +29,8 @@ var router = new Router();
 /**
  * 启用文件压缩
  */
-app.use(gzip());
+// app.use(gzip());
+app.use(compress());
 
 // app.use(logger());
 
