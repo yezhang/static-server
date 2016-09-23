@@ -3,6 +3,23 @@
   "version": "1.0.0",
   "description": "",
   "main": "koa.jx",
+  "keywords": [
+    "static",
+    "server"
+  ],
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@git.yonyou.com:e-invoice-FE/static-server.git"
+  },
+  "scripts": {
+    "dev": "node koa.js",
+    "watch": "pm2 start koa.js --watch",
+    "monit": "pm2 monit",
+    "stop": "pm2 stop koa.js",
+    "kill": "pm2 kill"
+  },
   "dependencies": {
     "babel": "^6.5.2",
     "babel-cli": "^6.14.0",
@@ -22,22 +39,5 @@
   },
   "devDependencies": {
     "babel-core": "^6.14.0"
-  },
-  "scripts": {
-    "dev": "node koa.js",
-    "watch": "pm2 start koa.js --watch",
-    "monit": "pm2 monit",
-    "stop": "pm2 stop koa.js",
-    "kill": "pm2 kill"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@git.yonyou.com:e-invoice-FE/static-server.git"
-  },
-  "keywords": [
-    "static",
-    "server"
-  ],
-  "author": "",
-  "license": "ISC"
+  }
 }
