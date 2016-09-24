@@ -56,14 +56,14 @@ app.use(router.routes())
  * 将任意请求转发到单独页面。
  */
 router.get('/', koaBody, function * (next) {
-    yield send(this, "/dist/index.html")
+    yield send(this, "dist/index.html")
 });
 
 /**
  * 处理登录页面。
  */
 router.get('/login', koaBody, function* (next) {
-    yield send(this, "/dist/index.html")
+    yield send(this, "dist/index.html")
 });
 
 /**
@@ -73,7 +73,7 @@ app.use(staticServer(path.join(__dirname, 'dist')));
 
 onerror(app);
 
-// 监听当前服务器的全部 IP 地址
+// 监听当前服务器的全部 IP 地址，以便代码在不同服务器移植。
 var IP = '0.0.0.0';
 var port = 9000;
 app.listen(port, IP);
