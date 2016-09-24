@@ -84,8 +84,8 @@ app.use(staticServer(path.join(__dirname, 'dist')));
 onerror(app);
 
 // 监听当前服务器的全部 IP 地址，以便代码在不同服务器移植。
-// var IP = '0.0.0.0';
-var IP = 'localhost';
+var IP = '0.0.0.0';
+// var IP = 'localhost';
 var port = 9000;
 app.listen(port, IP);
 
