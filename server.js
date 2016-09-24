@@ -73,7 +73,7 @@ app.use(staticServer(path.join(__dirname, 'dist')));
 
 onerror(app);
 
-var IP = '127.0.0.1'
+var IP = 'localhost'
 var port = 9000;
 app.listen(port, IP);
 
