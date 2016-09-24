@@ -73,8 +73,9 @@ app.use(staticServer(path.join(__dirname, 'dist')));
 
 onerror(app);
 
-var IP = 'localhost'
+// 监听当前服务器的全部 IP 地址
+var IP = '0.0.0.0';
 var port = 9000;
 app.listen(port, IP);
 
-console.log(`静态服务器启动成功, 访问地址 http://localhost:${port}`);
+console.log(`静态服务器启动成功, 访问地址 http://${IP}:${port}`);
