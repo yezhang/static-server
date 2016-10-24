@@ -84,7 +84,11 @@ onerror(app);
 // 监听当前服务器的全部 IP 地址，以便代码在不同服务器移植。
 var IP = '0.0.0.0';
 // var IP = 'localhost';
-var port = 9000;
+/**
+ * 8000，用于企业空间
+ * @type {number}
+ */
+var port = 8000;
 app.listen(port, IP);
 
 console.log(`静态服务器启动成功, 访问地址 http://${IP}:${port}`);
