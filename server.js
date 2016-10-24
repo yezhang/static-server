@@ -74,8 +74,6 @@ router.get('/timeline', koaBody, function* (next) {
     yield send(this, "dist/index.html")
 });
 
-
-
 /**
  * 处理没有路由的静态资源。
  */
