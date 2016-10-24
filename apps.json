@@ -1,0 +1,14 @@
+{
+  "apps": [
+    {
+      "name": "static-server",
+      "watch": true,
+      "script": "./servers/mobile/server.js"
+    },
+    {
+      "name": "esn-static-server",
+      "watch": true,
+      "script": "./servers/esn/server.js"
+    }
+  ]
+}

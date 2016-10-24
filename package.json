@@ -15,8 +15,8 @@
   },
   "scripts": {
     "dev": "node server.js",
-    "start": "pm2 start server.js --name \"static-server\"",
-    "watch": "pm2 start server.js --name \"static-server\" --watch",
+    "start": "pm2 start server.js --name \"esn-static-server\"",
+    "watch": "pm2 start server.js --name \"esn-static-server\" --watch",
     "monit": "pm2 monit",
     "stop": "pm2 stop --name \"static-server\"",
     "restart": "pm2 restart \"static-server\"",

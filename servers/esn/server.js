@@ -2,7 +2,17 @@
  * 部署前端静态资源的服务器。
  * Created by zhangye on 16/9/23.
  */
+'use strict';
 
+const config = require('../config/configServer');
+
+const hostConfig = {
+    IP: '0.0.0.0',
+    Port: 8000,
+    Path: 'esn_dist'
+}
+
+const app = config(hostConfig);
 
 // 监听当前服务器的全部 IP 地址，以便代码在不同服务器移植。
 var IP = hostConfig.IP;
