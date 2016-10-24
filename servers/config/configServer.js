@@ -18,9 +18,9 @@ const send = require('koa-send');
 const Router = require('koa-router');
 const koaBody = require('koa-body')();
 
-const app = koa();
-
 log4js.configure('config/log4j.json', {reloadSecs: 300});
+
+const app = koa();
 
 const log = log4js.getLogger('static-servers')
 
@@ -49,15 +49,14 @@ app.use(function * (next) {
     log.info(this.status + " <- " + href + " " + len);
 });
 
-
 app.use(router.routes())
     .use(router.allowedMethods());
 
-
 onerror(app);
 
-
 module.exports = function (hostConfig) {
+    const rootPath = path.resolve(__dirname, "../../", hostConfig.Path);
+
     const indexPagePath = hostConfig.Path + '/index.html';
 
     /**
@@ -84,7 +83,7 @@ module.exports = function (hostConfig) {
     /**
      * 处理没有路由的静态资源。
      */
-    app.use(staticServer(path.join(__dirname, hostConfig.Path)));
+    app.use(staticServer(rootPath));
 
     return app;
 };
