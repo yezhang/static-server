@@ -53,42 +53,45 @@ app.use(function * (next) {
 app.use(router.routes())
     .use(router.allowedMethods());
 
+const hostConfig = require('./config/hostConfig');
+
+const indexPagePath = hostConfig.Path + '/index.html';
+
 /**
  * 将请求转发到单独页面。
  */
 router.get('/', koaBody, function * (next) {
-    yield send(this, "dist/index.html")
+    yield send(this, indexPagePath)
 });
 
 /**
  * 处理登录页面。
  */
 router.get('/login', koaBody, function* (next) {
-    yield send(this, "dist/index.html")
+    yield send(this, indexPagePath)
 });
 
 /**
  * 用户点击发票消息后，跳转路由。
  */
 router.get('/timeline', koaBody, function* (next) {
-    yield send(this, "dist/index.html")
+    yield send(this, indexPagePath)
 });
 
 /**
  * 处理没有路由的静态资源。
  */
-app.use(staticServer(path.join(__dirname, 'dist')));
+app.use(staticServer(path.join(__dirname, hostConfig.Path)));
 
 onerror(app);
 
 // 监听当前服务器的全部 IP 地址，以便代码在不同服务器移植。
-var IP = '0.0.0.0';
-// var IP = 'localhost';
+var IP = hostConfig.IP;
 /**
- * 8000，用于企业空间
+ * 端口 8000，用于企业空间内嵌 App。
  * @type {number}
  */
-var port = 8000;
+var port = hostConfig.Port
 app.listen(port, IP);
 
 console.log(`静态服务器启动成功, 访问地址 http://${IP}:${port}`);
