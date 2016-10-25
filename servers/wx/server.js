@@ -8,8 +8,8 @@ const config = require('../config/configServer');
 
 const hostConfig = {
     IP: '0.0.0.0',
-    Port: 1521, // 临时接口，上线时需要调整为真实接口
-    Path: 'esn_dist'
+    Port: 1521, // 临时端口，借用 Oracle 的端口，上线时需要调整为真实接口
+    Path: 'wx_dist'
 }
 
 const app = config(hostConfig);
