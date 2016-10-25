@@ -20,41 +20,41 @@ const koaBody = require('koa-body')();
 
 log4js.configure('config/log4j.json', {reloadSecs: 300});
 
-const app = koa();
+module.exports = function (hostConfig) {
+    const app = koa();
 
-const log = log4js.getLogger('static-servers')
+    const log = log4js.getLogger('static-servers')
 
-var router = new Router();
+    var router = new Router();
 
-/**
- * 启用文件压缩
- */
-app.use(compress());
+    /**
+     * 启用文件压缩
+     */
+    app.use(compress());
 
 // app.use(logger());
 
-/**
- * 对所有请求做拦截
- */
-app.use(function * (next) {
-    let href = this.href;
-    // let origin = this.origin;
-    // let ip = this.ip;
-    let method = this.method;
-    log.info(method + " -> " + href);
+    /**
+     * 对所有请求做拦截
+     */
+    app.use(function * (next) {
+        let href = this.href;
+        // let origin = this.origin;
+        // let ip = this.ip;
+        let method = this.method;
+        log.info(method + " -> " + href);
 
-    yield next;
+        yield next;
 
-    let len = bytes(this.length);
-    log.info(this.status + " <- " + href + " " + len);
-});
+        let len = bytes(this.length);
+        log.info(this.status + " <- " + href + " " + len);
+    });
 
-app.use(router.routes())
-    .use(router.allowedMethods());
+    app.use(router.routes())
+        .use(router.allowedMethods());
 
-onerror(app);
+    onerror(app);
 
-module.exports = function (hostConfig) {
     const rootPath = path.resolve(__dirname, "../../", hostConfig.Path);
 
     const indexPagePath = hostConfig.Path + '/index.html';

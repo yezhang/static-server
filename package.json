@@ -15,12 +15,10 @@
   },
   "scripts": {
     "dev": "node server.js",
-    "start": "pm2 start server.js --name \"esn-static-server\"",
-    "watch": "pm2 start server.js --name \"esn-static-server\" --watch",
-    "monit": "pm2 monit",
-    "stop": "pm2 stop --name \"static-server\"",
-    "restart": "pm2 restart \"static-server\"",
-    "kill": "pm2 kill"
+    "start:esn": "pm2 start servers/esn/server.js --name \"esn-static-server\"",
+    "start:mobile": "pm2 start servers/mobile/server.js --name \"esn-static-server\"",
+    "start-all": "npm run start:esn && npm run start:mobile",
+    "watch": "pm2 start server.js --name \"esn-static-server\" --watch"
   },
   "dependencies": {
     "bytes": "^2.4.0",
