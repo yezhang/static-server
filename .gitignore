@@ -1,5 +1,5 @@
 node_modules/
-dist/
+*dist/
 public/
 
 # 忽略项目工程文件

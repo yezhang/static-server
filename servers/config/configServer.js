@@ -81,6 +81,13 @@ module.exports = function (hostConfig) {
     });
 
     /**
+     * 登录企业空间的路由
+     */
+    router.get('/qykjCASLogin', koaBody, function* (next) {
+        yield send(this, indexPagePath)
+    });
+
+    /**
      * 处理没有路由的静态资源。
      */
     app.use(staticServer(rootPath));
