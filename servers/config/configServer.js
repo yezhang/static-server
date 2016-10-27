@@ -20,12 +20,20 @@ const koaBody = require('koa-body')();
 
 log4js.configure('config/log4j.json', {reloadSecs: 300});
 
-module.exports = function (hostConfig) {
-    const app = koa();
+const app = koa();
 
-    const log = log4js.getLogger('static-servers')
+const log = log4js.getLogger('static-servers')
 
-    var router = new Router();
+const router = new Router();
+router.use(koaBody);
+
+/**
+ *
+ * @param hostConfig
+ * @param configRoutes (optional) function，配置路由
+ * @returns {*}
+ */
+module.exports = function (hostConfig, configRoutes) {
 
     /**
      * 启用文件压缩
@@ -55,42 +63,48 @@ module.exports = function (hostConfig) {
 
     onerror(app);
 
-    const rootPath = path.resolve(__dirname, "../../", hostConfig.Path);
-
     const indexPagePath = hostConfig.Path + '/index.html';
 
     /**
      * 将请求转发到单独页面。
      */
-    router.get('/', koaBody, function * (next) {
+    router.get('/', function * (next) {
         yield send(this, indexPagePath)
     });
 
     /**
      * 处理登录页面。
      */
-    router.get('/login', koaBody, function* (next) {
+    router.get('/login', function* (next) {
         yield send(this, indexPagePath)
     });
 
     /**
      * 用户点击发票消息后，跳转路由。
      */
-    router.get('/timeline', koaBody, function* (next) {
+    router.get('/timeline', function* (next) {
         yield send(this, indexPagePath)
     });
 
     /**
      * 登录企业空间的路由
      */
-    router.get('/qykjCASLogin', koaBody, function* (next) {
+    router.get('/qykjCASLogin', function* (next) {
         yield send(this, indexPagePath)
     });
 
+    if (typeof configRoutes === 'function') {
+        log.info('配置自定义路由')
+        configRoutes(hostConfig, router);
+    }
+
+    const rootPath = path.resolve(__dirname, "../../", hostConfig.Path);
     /**
      * 处理没有路由的静态资源。
      */
-    app.use(staticServer(rootPath));
+    app.use(staticServer(rootPath, {index: 'notExists.html'}));
 
     return app;
 };
+
+module.exports.router = router;
