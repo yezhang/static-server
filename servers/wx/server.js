@@ -23,7 +23,7 @@ app.use(function* (next) {
     this.status = 302;
     this.body = '自动登录...'
 
-    this.redirect('http://localhost' + this.path + '?' + this.querystring);
+    this.redirect('http://download.piapeda.com' + this.path + '?' + this.querystring);
     // this.body = yield proxy('http://localhost:8080' + this.path + '?' + this.querystring);
     yield next;
 });
