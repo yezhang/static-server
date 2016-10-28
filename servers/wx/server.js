@@ -7,7 +7,8 @@
 const config = require('../config/configServer');
 const configWx = require('./configWxServer');
 
-const proxy = require('./proxy');
+// const proxy = require('./proxy');
+const proxy = require('koa-proxy');
 
 const hostConfig = {
     IP: '0.0.0.0',
@@ -17,10 +18,9 @@ const hostConfig = {
 
 const app = config(hostConfig, configWx);
 
-app.use(function* (next) {
-    this.body = yield proxy('http://localhost' + this.path + '?' + this.querystring);
-    yield next;
-});
+app.use(proxy({
+    host: 'http://localhost:8080'
+}));
 
 // 监听当前服务器的全部 IP 地址，以便代码在不同服务器移植。
 var IP = hostConfig.IP;
