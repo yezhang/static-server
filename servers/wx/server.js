@@ -18,9 +18,15 @@ const hostConfig = {
 
 const app = config(hostConfig, configWx);
 
-app.use(proxy({
-    host: 'http://localhost:8080'
-}));
+app.use(function* (next) {
+    console.log('转发请求中...')
+    this.status = 302;
+    this.body = '自动登录...'
+
+    this.redirect('http://localhost' + this.path + '?' + this.querystring);
+    // this.body = yield proxy('http://localhost:8080' + this.path + '?' + this.querystring);
+    yield next;
+});
 
 // 监听当前服务器的全部 IP 地址，以便代码在不同服务器移植。
 var IP = hostConfig.IP;
