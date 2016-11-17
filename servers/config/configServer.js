@@ -87,6 +87,14 @@ module.exports = function (hostConfig, configRoutes) {
     });
 
     /**
+     * 登录首页。
+     */
+    router.get('/home', function* (next) {
+        yield send(this, indexPagePath)
+    });
+
+
+    /**
      * 登录企业空间的路由
      */
     router.get('/qykjCASLogin', function* (next) {
