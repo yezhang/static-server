@@ -93,7 +93,6 @@ module.exports = function (hostConfig, configRoutes) {
         yield send(this, indexPagePath)
     });
 
-
     /**
      * 登录企业空间的路由
      */
@@ -110,7 +109,7 @@ module.exports = function (hostConfig, configRoutes) {
     /**
      * 处理没有路由的静态资源。
      */
-    app.use(staticServer(rootPath, {index: 'notExists.html'}));
+    app.use(staticServer(rootPath, {maxage: 86400000,index: 'notExists.html'}));
 
     return app;
 };

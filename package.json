@@ -16,7 +16,9 @@
   "scripts": {
     "dev": "node server.js",
     "start:esn": "pm2 start servers/esn/server.js --name \"esn-static-server\"",
+    "restart:esn": "pm2 restart \"esn-static-server\"",
     "start:mobile": "pm2 start servers/mobile/server.js --name \"esn-static-server\"",
+    "restart:mobile": "pm2 restart \"esn-static-server\"",
     "start-all": "npm run start:esn && npm run start:mobile",
     "watch": "pm2 start server.js --name \"esn-static-server\" --watch"
   },
